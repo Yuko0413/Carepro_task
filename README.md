@@ -21,7 +21,7 @@ $git checkout -b ブランチ名
 $rbenv install
 
 rbenvを使ってrailsのバージョンを指定
-$rbenv local 2.6.6
+$rbenv local
 
 Node.jsをローカル環境で動かすためのソフトをインストール
 $brew install nodenv
