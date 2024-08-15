@@ -1,24 +1,41 @@
-# README
+*  ER図、ワイヤーフレーム
+* https://docs.google.com/presentation/d/1sIByIXo7z7BatT1AlgayihkRxQZzui5ypFmTy110etI/edit?usp=sharing
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 画面遷移図
+* https://drive.google.com/file/d/1vNb5Pl-0L3tzJLXtR42_HfszNF5qt1ys/view?usp=sharing
 
-Things you may want to cover:
+* 要件定義
+* https://docs.google.com/spreadsheets/d/1RgT9PrBQE0y6zW87PX5kByHksjAUUqbUdIcsemPBwgE/edit?usp=sharing
 
-* Ruby version
+* 開発言語：ruby 3系（ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]）
+* Ruby on rails 6系（Rails 6.1.7.7）
+* cloneして実行までは下記を参照ください。
+* 
+まずクローンするためのコマンドをgitに入力する。
+$git clone [url]
 
-* System dependencies
+クローンが完了したらブランチを切る。
+$git checkout -b ブランチ名
 
-* Configuration
+ブランチを切ったらrailsをローカルで動かしていくためのソフトをインストールしていく。
+$rbenv install
 
-* Database creation
+rbenvを使ってrailsのバージョンを指定
+$rbenv local
 
-* Database initialization
+Node.jsをローカル環境で動かすためのソフトをインストール
+$brew install nodenv
 
-* How to run the test suite
+$nodenv local v18.18.0
 
-* Services (job queues, cache servers, search engines, etc.)
+Gemfileをインストール
+$bundle install --without production
 
-* Deployment instructions
+yarnをインストールする
+$yarn install
 
-* ...
+データベースの準備とサーバー立ち上げ
+$rails db:migrate
+$rails s
+
+* https://madogiwa0124.hatenablog.com/entry/2017/03/26/133051
