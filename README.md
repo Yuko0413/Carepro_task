@@ -30,4 +30,4 @@ Things you may want to cover:
 * 開発言語：ruby 3系
 * Ruby on rails 6系
 * cloneして実行までは下記を参照ください。
-* https://qiita.com/nt-7/items/c5ea999a2638e03ee418
+* https://madogiwa0124.hatenablog.com/entry/2017/03/26/133051
