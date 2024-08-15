@@ -10,6 +10,7 @@
 * 開発言語：ruby 3系（ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]）
 * Ruby on rails 6系（Rails 6.1.7.7）
 * cloneして実行までは下記を参照ください。
+* 
 まずクローンするためのコマンドをgitに入力する。
 $git clone [url]
 
