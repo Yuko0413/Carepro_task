@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'ラベルモデル機能', type: :model do
+RSpec.describe '対応者モデル機能', type: :model do
   describe 'バリデーションのテスト' do
     let(:user) { FactoryBot.create(:user) }
 
-    context 'ラベルの名前が空文字の場合' do
+    context '対応者の名前が空文字の場合' do
       let(:label) { Label.new(name: '', user: user) }
 
       it 'バリデーションに失敗する' do
@@ -13,8 +13,8 @@ RSpec.describe 'ラベルモデル機能', type: :model do
       end
     end
 
-    context 'ラベルの名前に値があった場合' do
-      let(:label) { Label.new(name: 'テストラベル', user: user) }
+    context '対応者の名前に値があった場合' do
+      let(:label) { Label.new(name: 'テスト対応者', user: user) }
 
       it 'バリデーションに成功する' do
         expect(label).to be_valid

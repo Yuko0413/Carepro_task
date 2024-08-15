@@ -62,10 +62,10 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-    context 'ラベルで検索をした場合' do
+    context '対応者で検索をした場合' do
       let!(:user) { FactoryBot.create(:user) }
-      let!(:label1) { FactoryBot.create(:label, name: 'ラベル1', user: user) }
-      let!(:label2) { FactoryBot.create(:label, name: 'ラベル2', user: user) }
+      let!(:label1) { FactoryBot.create(:label, name: '対応者1', user: user) }
+      let!(:label2) { FactoryBot.create(:label, name: '対応者2', user: user) }
       let!(:task1) { FactoryBot.create(:task, title: 'タスク1', user: user, labels: [label1]) }
       let!(:task2) { FactoryBot.create(:task, title: 'タスク2', user: user, labels: [label2]) }
       let!(:task3) { FactoryBot.create(:task, title: 'タスク3', user: user, labels: [label1, label2]) }
@@ -79,8 +79,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
       end
   
-      it "そのラベルの付いたタスクがすべて表示される" do
-        select 'ラベル1', from: 'search[label_id]'
+      it "その対応者の付いたタスクがすべて表示される" do
+        select '対応者1', from: 'search[label_id]'
         click_button '検索'
         expect(page).to have_content 'タスク1'
         expect(page).to have_content 'タスク3'

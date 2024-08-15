@@ -12,7 +12,7 @@ class LabelsController < ApplicationController
   def create
     @label = current_user.labels.build(label_params)
     if @label.save
-      redirect_to labels_path, notice: 'ラベルを登録しました'
+      redirect_to labels_path, notice: '対応者を登録しました'
     else
       render :new
     end
@@ -23,7 +23,7 @@ class LabelsController < ApplicationController
 
   def update
     if @label.update(label_params)
-      redirect_to labels_path, notice: 'ラベルを更新しました'
+      redirect_to labels_path, notice: '対応者を更新しました'
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class LabelsController < ApplicationController
 
   def destroy
     @label.destroy
-    redirect_to labels_path, notice: 'ラベルを削除しました'
+    redirect_to labels_path, notice: '対応者を削除しました'
   end
 
   private

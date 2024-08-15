@@ -4,7 +4,17 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #delete '/logout', to: 'sessions#destroy'
 
-  resources :tasks
+  resources :tasks do
+    member do
+      patch :complete
+    end
+    collection do
+      get :completed
+    end
+  end
+
+
+  #resources :tasks
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
   resources :labels, only: [:index, :new, :create, :edit, :update, :destroy]
 

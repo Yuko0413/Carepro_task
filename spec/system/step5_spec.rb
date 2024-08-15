@@ -93,8 +93,8 @@ RSpec.describe 'step5', type: :system do
         it 'グローバルナビゲーション' do
           visit root_path
           sleep 1
-          expect(page).not_to have_link 'ラベル一覧'
-          expect(page).not_to have_link 'ラベルを登録する'
+          expect(page).not_to have_link '対応者一覧'
+          expect(page).not_to have_link '対応者を登録する'
         end
       end
       context '一般ユーザでログイン中の場合' do
@@ -106,40 +106,40 @@ RSpec.describe 'step5', type: :system do
           sleep 0.5
         end
         it 'グローバルナビゲーション' do
-          expect(page).to have_link 'ラベル一覧'
-          expect(page).to have_link 'ラベルを登録する'
+          expect(page).to have_link '対応者一覧'
+          expect(page).to have_link '対応者を登録する'
         end
 
-        it 'ラベル一覧画面' do
+        it '対応者一覧画面' do
           visit labels_path
           expect(page).to have_content '名前'
           expect(page).to have_content 'タスク数'
           expect(page).to have_link '編集'
           expect(page).to have_link '削除'
         end
-        it 'ラベル登録画面' do
+        it '対応者登録画面' do
           visit new_label_path
-          expect(page).to have_content 'ラベル登録ページ'
+          expect(page).to have_content '対応者登録ページ'
           expect(page).to have_selector 'input[name="label[name]"]'
           expect(page).to have_button '登録する'
         end
-        it 'ラベル編集画面' do
+        it '対応者編集画面' do
           visit edit_label_path(label_created_by_user)
-          expect(page).to have_content 'ラベル編集ページ'
+          expect(page).to have_content '対応者編集ページ'
           expect(page).to have_selector 'input[name="label[name]"]'
           expect(page).to have_button '更新する'
           expect(page).to have_link '戻る'
         end
         it 'タスク登録画面' do
           visit new_task_path
-          expect(page).to have_selector 'label', text: 'ラベル'
+          expect(page).to have_selector 'label', text: '対応者'
           expect(find('input[type="checkbox"]')).to be_visible
           expect(page).to have_button '登録する'
           expect(page).to have_link '戻る'
         end
         it 'タスク編集画面' do
           visit edit_task_path(task_created_by_user)
-          expect(page).to have_selector 'label', text: 'ラベル'
+          expect(page).to have_selector 'label', text: '対応者'
           expect(find('input[type="checkbox"]')).to be_visible
           expect(page).to have_button '更新する'
           expect(page).to have_link '戻る'
@@ -155,10 +155,10 @@ RSpec.describe 'step5', type: :system do
           sleep 0.5
         end
         it 'グローバルナビゲーション' do
-          expect(page).to have_link 'ラベル一覧'
-          expect(page).to have_link 'ラベルを登録する'
+          expect(page).to have_link '対応者一覧'
+          expect(page).to have_link '対応者を登録する'
         end
-        it 'ラベル一覧画面' do
+        it '対応者一覧画面' do
           visit labels_path
           sleep 0.5
           expect(page).to have_content '名前'
@@ -166,24 +166,24 @@ RSpec.describe 'step5', type: :system do
           expect(page).to have_link '編集'
           expect(page).to have_link '削除'
         end
-        it 'ラベル登録画面' do
+        it '対応者登録画面' do
           visit new_label_path
           sleep 0.5
-          expect(page).to have_content 'ラベル登録ページ'
+          expect(page).to have_content '対応者登録ページ'
           expect(page).to have_selector 'input[name="label[name]"]'
           expect(page).to have_button '登録する'
         end
-        it 'ラベル編集画面' do
+        it '対応者編集画面' do
           visit edit_label_path(label_created_by_admin)
           sleep 0.5
-          expect(page).to have_content 'ラベル編集ページ'
+          expect(page).to have_content '対応者編集ページ'
           expect(page).to have_selector 'label', text: '名前'
           expect(page).to have_button '更新する'
           expect(page).to have_link '戻る'
         end
       end
     end
-    describe '4.ラベル一覧画面には、ラベルに紐づいているタスクの数を表示させること' do
+    describe '4.対応者一覧画面には、対応者に紐づいているタスクの数を表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -192,7 +192,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'ラベル一覧画面には、ラベルに紐づいているタスクの数を表示させること' do
+      it '対応者一覧画面には、対応者に紐づいているタスクの数を表示させること' do
         3.times do |t|
           task = Task.create(title: "task_title_#{t+10}", content: "task_content_#{t+10}", deadline_on: Date.today, priority: 0, status: 0, user_id: user.id)
           task.labels << label_created_by_user
@@ -201,7 +201,7 @@ RSpec.describe 'step5', type: :system do
         expect(page).to have_content(3)
       end
     end
-    describe '5.タスクの登録、編集画面に「ラベル」という名前のフォームラベルと、ラベルを選択するチェックボックスを表示させること' do
+    describe '5.タスクの登録、編集画面に「対応者」という名前のフォーム対応者と、対応者を選択するチェックボックスを表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -212,16 +212,16 @@ RSpec.describe 'step5', type: :system do
       end
       it 'タスク登録画面' do
         visit new_task_path
-        expect(page).to have_selector 'label', text: 'ラベル'
+        expect(page).to have_selector 'label', text: '対応者'
         expect(find('input[type="checkbox"]')).to be_visible
       end
       it 'タスク編集画面' do
         visit edit_task_path(task_created_by_user)
-        expect(page).to have_selector 'label', text: 'ラベル'
+        expect(page).to have_selector 'label', text: '対応者'
         expect(find('input[type="checkbox"]')).to be_visible
       end
     end
-    describe '6.タスク編集画面では、タスクに紐づいているラベルにチェックが入った状態で表示させること' do
+    describe '6.タスク編集画面では、タスクに紐づいている対応者にチェックが入った状態で表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -230,7 +230,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'タスク編集画面では、タスクに紐づいているラベルにチェックが入った状態で表示させること' do
+      it 'タスク編集画面では、タスクに紐づいている対応者にチェックが入った状態で表示させること' do
         10.times { |t| Label.create!(id: t+1, name: "label_#{t+1}", user_id: user.id) }
         task_created_by_user.labels << Label.find(2,7,9)
         visit edit_task_path(task_created_by_user)
@@ -247,7 +247,7 @@ RSpec.describe 'step5', type: :system do
         expect(page).to have_unchecked_field('task_label_ids_10')
       end
     end
-    describe '7.タスク詳細画面に「ラベル」という項目を追加し、そのタスクに紐づいているラベル名をすべて表示させること' do
+    describe '7.タスク詳細画面に「対応者」という項目を追加し、そのタスクに紐づいている対応者名をすべて表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -256,12 +256,12 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'タスクに紐づいているラベル名をすべて表示させること' do
+      it 'タスクに紐づいている対応者名をすべて表示させること' do
         10.times { |t| Label.create!(id: t+1, name: "label_#{t+1}", user_id: user.id) }
         task_created_by_user.labels << Label.find(2,7,9)
         visit task_path(task_created_by_user)
         sleep 0.5
-        expect(page).to have_content 'ラベル'
+        expect(page).to have_content '対応者'
         expect(page).to have_content 'label_2'
         expect(page).to have_content 'label_7'
         expect(page).to have_content 'label_9'
@@ -287,66 +287,66 @@ RSpec.describe 'step5', type: :system do
         sleep 0.5
       end
       it 'グローバルナビゲーションのリンクを要件通りに遷移させること' do
-        click_link 'ラベル一覧'
+        click_link '対応者一覧'
         sleep 0.5
-        expect(page).to have_content 'ラベル一覧ページ'
-        click_link 'ラベルを登録する'
+        expect(page).to have_content '対応者一覧ページ'
+        click_link '対応者を登録する'
         sleep 0.5
-        expect(page).to have_content 'ラベル登録ページ'
+        expect(page).to have_content '対応者登録ページ'
       end
-      it 'ラベルの登録に成功した場合、ページタイトルに「ラベル一覧ページ」が表示される' do
+      it '対応者の登録に成功した場合、ページタイトルに「対応者一覧ページ」が表示される' do
         visit new_label_path
         sleep 0.5
         find('input[name="label[name]"]').set('new_label_name')
         click_button '登録する'
         sleep 0.5
-        expect(page).to have_content 'ラベル一覧ページ'
+        expect(page).to have_content '対応者一覧ページ'
       end
-      it 'ラベルの登録に失敗した場合、ページタイトルに「ラベル登録ページ」が表示される' do
+      it '対応者の登録に失敗した場合、ページタイトルに「対応者登録ページ」が表示される' do
         visit new_label_path
         sleep 0.5
         find('input[name="label[name]"]').set('')
         click_button '登録する'
         sleep 0.5
-        expect(page).to have_content 'ラベル登録ページ'
+        expect(page).to have_content '対応者登録ページ'
       end
-      it 'ラベルの編集に成功した場合、ページタイトルに「ラベル一覧ページ」が表示される' do
+      it '対応者の編集に成功した場合、ページタイトルに「対応者一覧ページ」が表示される' do
         visit edit_label_path(label_created_by_user)
         sleep 0.5
         find('input[name="label[name]"]').set('edit_label_name')
         click_button '更新する'
         sleep 0.5
-        expect(page).to have_content 'ラベル一覧ページ'
+        expect(page).to have_content '対応者一覧ページ'
       end
-      it 'ラベルの編集に失敗した場合、ページタイトルに「ラベル編集ページ」が表示される' do
+      it '対応者の編集に失敗した場合、ページタイトルに「対応者編集ページ」が表示される' do
         visit edit_label_path(label_created_by_user)
         sleep 0.5
         find('input[name="label[name]"]').set('')
         click_button '更新する'
         sleep 0.5
-        expect(page).to have_content 'ラベル編集ページ'
+        expect(page).to have_content '対応者編集ページ'
       end
-      it 'ラベル一覧画面の「編集」をクリックした場合、ページタイトルに「ラベル編集ページ」が表示される' do
+      it '対応者一覧画面の「編集」をクリックした場合、ページタイトルに「対応者編集ページ」が表示される' do
         visit labels_path
         sleep 0.5
         click_link '編集', href: edit_label_path(label_created_by_user)
         sleep 0.5
-        expect(page).to have_content 'ラベル編集ページ'
+        expect(page).to have_content '対応者編集ページ'
       end
-      it 'ラベル一覧画面の「削除」をクリックした場合、ページタイトルに「ラベル一覧ページ」が表示される' do
+      it '対応者一覧画面の「削除」をクリックした場合、ページタイトルに「対応者一覧ページ」が表示される' do
         visit labels_path
         sleep 0.5
         click_link '削除', href: label_path(label_created_by_user)
         sleep 0.5
         page.driver.browser.switch_to.alert.accept
-        expect(page).to have_content 'ラベル一覧ページ'
+        expect(page).to have_content '対応者一覧ページ'
       end
-      it 'ラベル編集画面の「戻る」をクリックした場合、ページタイトルに「ラベル一覧ページ」が表示される' do
+      it '対応者編集画面の「戻る」をクリックした場合、ページタイトルに「対応者一覧ページ」が表示される' do
         visit edit_label_path(label_created_by_user)
         sleep 0.5
         click_link '戻る'
         sleep 0.5
-        expect(page).to have_content 'ラベル一覧ページ'
+        expect(page).to have_content '対応者一覧ページ'
       end
     end
   end
@@ -361,15 +361,15 @@ RSpec.describe 'step5', type: :system do
       find('#create-session').click
       sleep 0.5
     end
-    describe '9.ラベルの検索フォームはステップ3で実装したタスク一覧画面の検索フォームに追加する形で実装すること' do
-      it 'ラベルの検索フォームはステップ3で実装したタスク一覧画面の検索フォームに追加する形で実装すること' do
+    describe '9.対応者の検索フォームはステップ3で実装したタスク一覧画面の検索フォームに追加する形で実装すること' do
+      it '対応者の検索フォームはステップ3で実装したタスク一覧画面の検索フォームに追加する形で実装すること' do
         visit tasks_path
         sleep 0.5
         expect(page).to have_css '#search_label'
       end
     end
-    describe '10.ラベルの検索フォームにはselectを使用し、デフォルト値は空にすること' do
-      it 'ラベルの検索フォームにはselectを使用し、デフォルト値は空にすること' do
+    describe '10.対応者の検索フォームにはselectを使用し、デフォルト値は空にすること' do
+      it '対応者の検索フォームにはselectを使用し、デフォルト値は空にすること' do
         visit tasks_path
         sleep 0.5
         expect(find('#search_label').all('option')[0].text).to be_blank
@@ -378,7 +378,7 @@ RSpec.describe 'step5', type: :system do
   end
 
   describe '機能要件' do
-    describe '11.タスクを登録、編集する際、ラベル付けできるようにすること' do
+    describe '11.タスクを登録、編集する際、対応者付けできるようにすること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -387,7 +387,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'タスクを登録する際、ラベル付けできるようにすること' do
+      it 'タスクを登録する際、対応者付けできるようにすること' do
         visit new_task_path
         sleep 0.5
         find('input[name="task[title]"]').set('task_title')
@@ -399,7 +399,7 @@ RSpec.describe 'step5', type: :system do
         click_button '登録する'
         sleep 0.5
       end
-      it 'タスクを編集する際、ラベル付けできるようにすること' do
+      it 'タスクを編集する際、対応者付けできるようにすること' do
         visit edit_task_path(task_created_by_user)
         sleep 0.5
         find('input[name="task[title]"]').set('task_title')
@@ -413,7 +413,7 @@ RSpec.describe 'step5', type: :system do
       end
     end
 
-    describe '12.1つのタスクに対し、複数のラベルを登録できるようにすること' do
+    describe '12.1つのタスクに対し、複数の対応者を登録できるようにすること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -423,7 +423,7 @@ RSpec.describe 'step5', type: :system do
         sleep 0.5
       end
       context 'タスク登録画面' do
-        it '1つのタスクに対し、複数のラベルを登録できるようにすること' do
+        it '1つのタスクに対し、複数の対応者を登録できるようにすること' do
           10.times { |t| Label.create!(name: "label_#{t+1}", user_id: user.id) }
           visit new_task_path
           sleep 0.5
@@ -447,7 +447,7 @@ RSpec.describe 'step5', type: :system do
         end
       end
       context 'タスク編集画面' do
-        it '1つのタスクに対し、複数のラベルを登録できるようにすること' do
+        it '1つのタスクに対し、複数の対応者を登録できるようにすること' do
           10.times { |t| Label.create!(name: "label_#{t+1}", user_id: user.id) }
           visit edit_task_path(task_created_by_user)
           sleep 0.5
@@ -471,7 +471,7 @@ RSpec.describe 'step5', type: :system do
       end
     end
 
-    describe '13.ラベルを削除するリンクをクリックした際、確認ダイアログに「本当に削除してもよろしいですか？」という文字を表示させること' do
+    describe '13.対応者を削除するリンクをクリックした際、確認ダイアログに「本当に削除してもよろしいですか？」という文字を表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -480,7 +480,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'ラベルを削除するリンクをクリックした際、確認ダイアログに「本当に削除してもよろしいですか？」という文字を表示させること' do
+      it '対応者を削除するリンクをクリックした際、確認ダイアログに「本当に削除してもよろしいですか？」という文字を表示させること' do
         visit labels_path
         sleep 0.5
         click_link '削除', href: label_path(label_created_by_user)
@@ -497,39 +497,39 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      context 'ラベルの登録に成功した場合' do
-        it '「ラベルを登録しました」というフラッシュメッセージを表示させること' do
+      context '対応者の登録に成功した場合' do
+        it '「対応者を登録しました」というフラッシュメッセージを表示させること' do
           visit new_label_path
           sleep 0.5
           find('input[name="label[name]"]').set('new_label_name')
           click_button '登録する'
           sleep 0.5
-          expect(page).to have_content 'ラベルを登録しました'
+          expect(page).to have_content '対応者を登録しました'
         end
       end
-      context 'ラベルの更新に成功した場合' do
-        it '「ラベルを更新しました」というフラッシュメッセージを表示させること' do
+      context '対応者の更新に成功した場合' do
+        it '「対応者を更新しました」というフラッシュメッセージを表示させること' do
           visit edit_label_path(label_created_by_user)
           sleep 0.5
           find('input[name="label[name]"]').set('new_label_name')
           click_button '更新する'
           sleep 0.5
-          expect(page).to have_content 'ラベルを更新しました'
+          expect(page).to have_content '対応者を更新しました'
         end
       end
-      context 'ラベルを削除した場合' do
-        it '「ラベルを削除しました」というフラッシュメッセージを表示させること' do
+      context '対応者を削除した場合' do
+        it '「対応者を削除しました」というフラッシュメッセージを表示させること' do
           visit labels_path
           sleep 0.5
           click_link '削除', href: label_path(label_created_by_user)
           sleep 0.5
           page.driver.browser.switch_to.alert.accept
-          expect(page).to have_content 'ラベルを削除しました'
+          expect(page).to have_content '対応者を削除しました'
         end
       end
     end
 
-    describe '15.ラベルの名前を未入力で登録、更新しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
+    describe '15.対応者の名前を未入力で登録、更新しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -538,7 +538,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'ラベルの名前を未入力で登録しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
+      it '対応者の名前を未入力で登録しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
         visit new_label_path
         sleep 0.5
         find('input[name="label[name]"]').set('')
@@ -546,7 +546,7 @@ RSpec.describe 'step5', type: :system do
         sleep 0.5
         expect(page).to have_content '名前を入力してください'
       end
-      it 'ラベルの名前を未入力で更新しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
+      it '対応者の名前を未入力で更新しようとした際、「名前を入力してください」というバリデーションメッセージを表示させること' do
         visit edit_label_path(label_created_by_user)
         sleep 0.5
         find('input[name="label[name]"]').set('')
@@ -556,7 +556,7 @@ RSpec.describe 'step5', type: :system do
       end
     end
 
-    describe '16.登録したラベルは、そのラベルを登録したユーザにしか使えないようにすること' do
+    describe '16.登録した対応者は、その対応者を登録したユーザにしか使えないようにすること' do
       let!(:second_user) { User.create(name: 'second_user_name', email: 'second_user@email.com', password: 'password') }
       before do
         visit new_session_path
@@ -566,7 +566,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'タスク登録画面に他のユーザが作成したラベルは表示されない' do
+      it 'タスク登録画面に他のユーザが作成した対応者は表示されない' do
         10.times { |t| Label.create!(id: t+1, name: "label_#{t+1}", user: second_user) }
         visit new_task_path
         sleep 0.5
@@ -581,7 +581,7 @@ RSpec.describe 'step5', type: :system do
         expect(page).not_to have_content 'label_9'
         expect(page).not_to have_content 'label_10'
       end
-      it 'タスク編集画面に他のユーザが作成したラベルは表示されない' do
+      it 'タスク編集画面に他のユーザが作成した対応者は表示されない' do
         10.times { |t| Label.create!(id: t+1, name: "label_#{t+1}", user: second_user) }
         visit edit_task_path(task_created_by_user)
         sleep 0.5
@@ -598,7 +598,7 @@ RSpec.describe 'step5', type: :system do
       end
     end
 
-    describe '17.ラベルを1つ指定し検索することで、そのラベルが貼られたタスクのみ表示させること' do
+    describe '17.対応者を1つ指定し検索することで、その対応者が貼られたタスクのみ表示させること' do
       before do
         visit new_session_path
         sleep 0.5
@@ -607,7 +607,7 @@ RSpec.describe 'step5', type: :system do
         click_button 'ログイン'
         sleep 0.5
       end
-      it 'ラベルを1つ指定し検索することで、そのラベルが貼られたタスクのみ表示させること' do
+      it '対応者を1つ指定し検索することで、その対応者が貼られたタスクのみ表示させること' do
         5.times do |t|
           Task.create(title: "task_title_#{t+2}", content: "task_content_#{t+2}", deadline_on: Date.today, priority: 0, status: 0, user_id: user.id)
           task = Task.create(title: "task_title_#{t+7}", content: "task_content_#{t+7}", deadline_on: Date.today, priority: 0, status: 0, user_id: user.id)

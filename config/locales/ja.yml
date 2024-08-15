@@ -3,7 +3,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
-      label: ラベル
+      label: 対応者
     attributes:
       base:
         ensure_an_admin_remains: "管理者が0人になるため削除できません"

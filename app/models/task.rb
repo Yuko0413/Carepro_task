@@ -28,4 +28,8 @@ class Task < ApplicationRecord
   def display_status
     I18n.t("enums.task.status.#{status}")
   end
+
+  def complete!
+    update(status: 'completed', completed_at: Time.current)
+  end
 end

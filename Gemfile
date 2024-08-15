@@ -34,6 +34,7 @@ gem 'kaminari'
 
 gem 'bootstrap', '~> 5.3.3'
 gem 'sassc-rails'
+gem 'jquery-rails'
 
 
 
