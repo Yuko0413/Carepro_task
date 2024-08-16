@@ -23,8 +23,8 @@
           <% end %>
           <%= link_to t('links.global.tasks_index'), root_path, class: 'list-group-item list-group-item-action bg-light' %>
           <%= link_to t('links.global.new_task'), new_task_path, class: 'list-group-item list-group-item-action bg-light' %>
-          <%= link_to 'ラベル一覧', labels_path, class: 'list-group-item list-group-item-action bg-light' %>
-          <%= link_to 'ラベルを登録する', new_label_path, class: 'list-group-item list-group-item-action bg-light' %>
+          <%= link_to '対応者一覧', labels_path, class: 'list-group-item list-group-item-action bg-light' %>
+          <%= link_to '対応者を登録する', new_label_path, class: 'list-group-item list-group-item-action bg-light' %>
           <%= link_to '完了したタスク', completed_tasks_path, class: 'list-group-item list-group-item-action bg-light' %>
           <%= link_to t('links.global.account_setting'), user_path(current_user), class: 'list-group-item list-group-item-action bg-light' %>
           <%= link_to t('links.global.logout'), session_path(current_user), method: :delete, class: 'list-group-item list-group-item-action bg-light' %>
